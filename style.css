@@ -1,0 +1,26 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: lavenderblush;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.nav h1 {
+    text-align: center;
+}
+
+.nav #highScores{
+    text-align: left;
+    background-color: white;
+    color: darkorchid;
+}
+#time{
+    text-align: right;
+}
