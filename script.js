@@ -243,24 +243,46 @@ function setTimer() {
   displayQestion(questionNumber);
   function checkAnswer() {
     var correctAnswer = currentQ.correct;
+
+    
     answerChoice1.addEventListener("click",function(event){
         key = event.target.id;
-        if(key == "one"){
+        if(key = correctAnswer){
             questionNumber++
             score++
-        }
-        else{
-            time = time - 1
-            console.log(time)
-
+            console.log(score)
         }
         displayQestion(questionNumber);
-
     })
+    answerChoice2.addEventListener("click",function(event){
+        key = event.target.id;
+        if(key = correctAnswer){
+            questionNumber++
+            score++
+            console.log(score)
+        }
+        displayQestion(questionNumber);
+    })
+    answerChoice3.addEventListener("click",function(event){
+        key = event.target.id;
+        if(key = correctAnswer){
+            questionNumber++
+            score++
+            console.log(score);
+        }
+        displayQestion(questionNumber);
+    })
+    answerChoice4.addEventListener("click",function(event){
+        key = event.target.id;
+        if(key = correctAnswer){
+            questionNumber++
+            score++
+            console.log(score);
+        }
+        displayQestion(questionNumber);
+    })
+
 
   }
   
   checkAnswer();
-  
-
-  
