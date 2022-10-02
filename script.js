@@ -8,7 +8,7 @@ var answerChoice2 = document.querySelector("#two");
 var answerChoice3 = document.querySelector("#three");
 var answerChoice4 = document.querySelector("#four");
 var playerScore = document.querySelector("#score");
-var playerInitials = document.getElementById("#initials");
+var playerInitials = document.getElementById('initials').value;
 var gameScreen = document.querySelector("#game");
 var endScreen = document.querySelector("#end");
 var introScreen = document.querySelector("#intro");
@@ -29,7 +29,7 @@ var initialList = [];
 //list of questions
 var questionChoices = [
     {
-        question: "What HTML element is used to insert a picture",
+        question: "What HTML element is used to insert a picture?",
         choice1: "<picture/>",
         choice2: "<a/>",
         choice3: "<img/>",
@@ -37,158 +37,118 @@ var questionChoices = [
         correct: "three"
     },
     {
-        question: "What is my name",
-        choice1: "Morgan",
-        choice2: "Kelly",
-        choice3: "Liz",
-        choice4: "All of the above",
+        question: "What does HTML stand for?",
+        choice1: "Hyper Text Markup Language",
+        choice2: "Hyper Text Marketing Lanaguae",
+        choice3: "Hyper Trainer Marking Language",
+        choice4: "HTML is not an abbreviation",
+        correct: "one"
+    },
+    {
+        question: "Which answer is the correct HTML title header?",
+        choice1: "<header>Title</header>",
+        choice2: "<h1/>",
+        choice3: "<h1>Title</h2>",
+        choice4: "<h1>Title</h1>",
         correct: "four"
     },
     {
-        question: "What is my favorite color",
-        choice1: "blue",
-        choice2: "green",
-        choice3: "purple",
-        choice4: "yellow",
-        correct: "one"
-    },
-    {
-        question: "Hello word",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
+        question: "How do you define a variable in JavaSript?",
+        choice1: "let",
+        choice2: "--var",
+        choice3: "var",
+        choice4: "variable",
         correct: "three"
     },
     {
-        question: "What is the meaning of life",
-        choice1: "IDK",
-        choice2: "Everything",
-        choice3: "Ice Cream",
-        choice4: "Hola",
-        correct: "choice2"
-    },
-    {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
+        question: "How do you apply CSS elements universally?",
+        choice1: "*",
+        choice2: "body",
+        choice3: ".class",
+        choice4: "#",
         correct: "one"
     },
     {
-        question: "What is 2+2",
-        choice1: "4",
-        choice2: "6",
-        choice3: "2",
-        choice4: "1",
-        correct: "one"
+        question: "What is not a semantic element?",
+        choice1: "section",
+        choice2: "header",
+        choice3: "aside",
+        choice4: "div",
+        correct: "four"
     },
     {
-        question: "What is my favorite animal",
-        choice1: "Tiger",
-        choice2: "Dog",
-        choice3: "Dolphin",
-        choice4: "Bear",
+        question: "What property is used to change the background color?",
+        choice1: "color",
+        choice2: "backgound",
+        choice3: "background-color",
+        choice4: "border",
+        correct: "three"
+    },
+    {
+        question: "Which CSS property controls the text size?",
+        choice1: "text",
+        choice2: "font-size",
+        choice3: "font-weight",
+        choice4: "text-size",
         correct: "two"
     },
     {
-        question: "How many siblings do i have",
-        choice1: "three",
-        choice2: "zero",
-        choice3: "2",
-        choice4: "1",
+        question: "How would you write 'Hello World' in an alert box?",
+        choice1: "('Hello World')",
+        choice2: "confirm('Hello World')",
+        choice3: "prompt('Hello World')",
+        choice4: "alert('Hello World')",
         correct: "four"
     }
     ,
     {
-        question: "What is my favorite season",
-        choice1: "fall",
-        choice2: "spring",
-        choice3: "winter",
-        choice4: "summer",
+        question: "How do you create a function called myFunction in Javascript?",
+        choice1: "function myFunction()",
+        choice2: "myFunction()",
+        choice3: "create function myFunction()",
+        choice4: "var function myFunction()",
+        correct: "one"
+    },
+    {
+        question: "How do you set two variables strictly equal to one another",
+        choice1: "=",
+        choice2: "==",
+        choice3: "===",
+        choice4: "!=",
         correct: "three"
     },
     {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
+        question: "What arithmetic expression shows two things are no equal",
+        choice1: "!=",
+        choice2: "/",
+        choice3: "notEqual",
+        choice4: "=!",
         correct: "one"
     },
     {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
+        question: "How would you run a set of data multiple times",
+        choice1: "If else statment",
+        choice2: "repeat the same code over and over again",
+        choice3: "for loop",
+        choice4: "function",
+        correct: "three"
     },
     {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
+        question: "What is the data type for a variable that equls true",
+        choice1: "String",
+        choice2: "Boolen",
+        choice3: "Null",
+        choice4: "Integer",
+        correct: "two"
     },
     {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
-    },
-    {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
-    },
-    {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
-    },
-    {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
-    },
-    {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
-    },
-    {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
-    },
-    {
-        question: "What HTML element is used to insert a picture",
-        choice1: "<picture/>",
-        choice2: "<a/>",
-        choice3: "<img/>",
-        choice4: "<br/>",
-        correct: "one"
-    },
+        question: "What does == do? ",
+        choice1: "Compares two variables data type and value",
+        choice2: "Compares two variables value only",
+        choice3: "Compares two variables data type only",
+        choice4: "Compares two variables in data type, value and length",
+        correct: "two"
+    }
 ]
 
 
@@ -242,58 +202,63 @@ function setTimer() {
         answerChoice4.textContent = currentQ.choice4;  
     }
     else{
-        questionTitle.textContent = "";
-        answerChoice1.textContent = "";
-        answerChoice2.textContent = "";
-        answerChoice3.textContent = "";
-        answerChoice4.textContent = "";
-        playerScore.textContent = "Your Score is " + score;
+        playerScore.textContent = score;
     }
     
   }
 
-  //function to check if the correct answer is chosen
-  
   
 
 function correctAnswerClicked(){
     var correctAnswer = currentQ.correct;
-    
-   
-    for(var i=0; i<answerChoices.length; i++){
+    console.log(correctAnswer);
+    for(var i =0; i< answerChoices.length;i++) {
         answerChoices[i].addEventListener("click",function(event) {
             key = event.target.id;
             console.log(key);
             if(key === correctAnswer){
                 score = score + 1;
-                console.log(score);
             }
             else if(key != correctAnswer && time>0) {
                 time = time - 15;
             }
-            // else if(time <=0){
-            //     showScore();
-            // }
             questionNumber++;
             displayQestion(questionNumber);
-        })
+            })
     }
     
+    }
+
+
+function saveHighScores(){
+    var playerData = {
+        playerScore: score,
+        playerName: playerInitials
+    };
+    localStorage.setItem("playerData", JSON.stringify(playerData));
+    console.log(playerData);
 }
-
-
 
 function displayHighScores(){
-    var highscores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
+    var lastScore = JSON.parse(localStorage.getItem("playerData"));
     
-    for(var i=0; i<highscores.length; i++){
-        var nameList = document.createElement("li");
-        var scoreList = document.createElement("li");
-        
-        nameList.textContent = highscores[i].playerName;
-        scoreList.textContent = highscores[i].playerScore;
+    if(lastScore !==null){
+        document.getElementById("previousScores").innerHTML = lastScore;
+    }
+    else{
+        return;
     }
 }
+
+function clickSubmitScoresButton(){
+    submitScoresButton.addEventListener("click",function(e){
+        e.preventDefault();
+        saveHighScores();
+        displayHighScores();
+
+    })
+}
+clickSubmitScoresButton();
 
 
 function onstartButton() {
@@ -307,5 +272,6 @@ function onstartButton() {
   }
   onstartButton();
 
-//endGame();
+
+
 
