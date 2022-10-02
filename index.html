@@ -16,24 +16,21 @@
         <button id="start">Start Quiz</button>
     </header>
 
-    <section class = "container">
+    <section class = "container" data-state="hidden">
         <section class ="quiz-question">
-            <section class = "question">Question</section>
-            <ul>
-                <li><button class="answer" id = "one">Answer1</button></li>
-                <li><button class ="answer" id = "two">Answer2</button></li>
-                <li><button class= "answer" id = "three">Answer3</button></li>
-                <li><button class = "answer" id = "four">Answer4</button></li>
-            </ul>
+            <section class = "question"></section>
+            <button class="answer" id = "one"></button>
+            <button class ="answer" id = "two"></button>
+            <button class= "answer" id = "three"></button>
+            <button class = "answer" id = "four"></button>
         </section>
     </section>
     
 
-    <section class="endScreen">
-        <h2>You completed the Quiz!</h2>
+    <section class="endScreen" data-state="hidden">
         <p id="score"></p>
         <label id="finisher"></label>
-        <input id="initials"></input>
+        <label id="initials"></label>
     </section>
    
   

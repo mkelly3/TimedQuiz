@@ -6,6 +6,9 @@ var answerChoice1 = document.querySelector("#one");
 var answerChoice2 = document.querySelector("#two");
 var answerChoice3 = document.querySelector("#three");
 var answerChoice4 = document.querySelector("#four");
+var playerScore = document.querySelector("#score");
+var playerInitials = document.querySelector("#initials");
+var endScreen = document.querySelector(".endScreen");
 
 //variables for the time and players overall score 
 var time = 60;
@@ -180,19 +183,19 @@ var questionChoices = [
 var randomQuestions = []
 var questionNumber = 0; 
 
-
-
 function setTimer() {
     var timerInterval = setInterval(function() {
       time--;
       timeEl.textContent = "Time: " + time;
   
-      if(time === 0 || questionNumber === 9) {
+      if(time === 0 || questionNumber == 10) {
         clearInterval(timerInterval);
       }
 
     }, 1000);
   }
+
+
 
   //function to choose 10 random questions for the quiz
   function chooseRandomQuestion(){
@@ -229,6 +232,7 @@ function setTimer() {
         answerChoice2.textContent = "";
         answerChoice3.textContent = "";
         answerChoice4.textContent = "";
+        playerScore.textContent = "Your Score is " + score;
     }
     
   }
@@ -249,19 +253,44 @@ function correctAnswerClicked(){
                 score = score + 1;
                 console.log(score);
             }
-            // else{
-            //     time = time - 2;
-            // }
+            else{
+                time = time - 2;
+            }
             questionNumber++;
             displayQestion(questionNumber);
         })
     }
     
 }
+
+function saveUserScore(){
+    var userInfo = {
+        finalScore: score,
+        initials: playerInitials.value
+    }
+    localStorage.setItem("userInfo",JSON.stringify(userInfo));
+}
+
+function getUserScores(){
+    var lastScore = JSON.parse(localStorage.getItem("userInfo"));
+
+    if(lastScore !== null){
+        playerScore.textContent = userInfor.score;
+        playerInitials.textContent = userInfo.initials;
+    }
+    else{
+        return;
+    }
+}
+
+
 //end the game and bring up 
 function endGame(){
+    var userName = document.createElement("input");
     if(questionNumber === 9 || time === 0){
-        userScore();
+        endScreen.appendChild(userName);
+        saveUserScore();
+        getUserScores();
     }
 }
 
@@ -269,7 +298,7 @@ function endGame(){
 function onstartButton() {
     startButton.addEventListener("click",function(){
         displayQestion(questionNumber);
-    correctAnswerClicked();
+        correctAnswerClicked();
         setTimer();
         startButton.setAttribute("style","font-size:20px");
 
@@ -277,5 +306,6 @@ function onstartButton() {
   }
 
 onstartButton();
+endGame();
 
 
