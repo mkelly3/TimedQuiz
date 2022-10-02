@@ -8,17 +8,17 @@ body {
     width: 100vw;
     height: 100vh;
 }
-   
-header {
-    display: relative;
-    padding: 20px;
-    background-color: navy;  
-    border-style:double;  
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
-header p{
-    text-align: right;
+
+#time{
     color: white;
-    margin-right: 30px;
+    font-size: 200%;
+
 }
 .container {
     display: flex;
@@ -35,13 +35,26 @@ header p{
     box-shadow: 0 0 10px 2px;
     
 }
-.buttons button{
-    display: grid;
-    gap:30px;
-}
-
 
 .hidden{
     display: none;
 }
+
+#intro button{
+    font-size: 200%;
+    border: 2px solid navy;
+    margin-left: 120px;
+}
+#intro h1{
+    font-size: 400%;
+}
+
+
+.answer button{
+    display: grid;
+    font-size: 120%;
+    margin: 20px;
+}
+
+
 
