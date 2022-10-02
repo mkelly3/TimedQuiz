@@ -1,3 +1,4 @@
+var container = document.querySelector(".container");
 var questionTitle = document.querySelector(".question");
 var answerChoices = document.querySelectorAll(".answer");
 var startButton = document.querySelector("#start");
@@ -7,12 +8,23 @@ var answerChoice2 = document.querySelector("#two");
 var answerChoice3 = document.querySelector("#three");
 var answerChoice4 = document.querySelector("#four");
 var playerScore = document.querySelector("#score");
-var playerInitials = document.querySelector("#initials");
-var endScreen = document.querySelector(".endScreen");
+var playerInitials = document.getElementById("#initials");
+var gameScreen = document.querySelector("#game");
+var endScreen = document.querySelector("#end");
+var introScreen = document.querySelector("#intro");
+var submitScoresButton = document.querySelector("#submitScores");
+
+
+
 
 //variables for the time and players overall score 
-var time = 60;
+var time = 75;
 var score = 0;
+//empty array to hold random questions
+var randomQuestions = []
+var questionNumber = 0; 
+var scoreList = [];
+var initialList = [];
 
 //list of questions
 var questionChoices = [
@@ -179,21 +191,24 @@ var questionChoices = [
     },
 ]
 
-//empty array to hold random questions
-var randomQuestions = []
-var questionNumber = 0; 
+
 
 function setTimer() {
     var timerInterval = setInterval(function() {
       time--;
       timeEl.textContent = "Time: " + time;
   
-      if(time === 0 || questionNumber == 10) {
+      if(time === 0 || questionNumber === randomQuestions.length) {
         clearInterval(timerInterval);
+        gameScreen.classList.add('hidden');
+        endScreen.classList.remove('hidden');
+        // playerScore.textContent = score;
+        // playerInitials.textContent = 'Please enter your initials'
       }
 
     }, 1000);
   }
+
 
 
 
@@ -253,9 +268,12 @@ function correctAnswerClicked(){
                 score = score + 1;
                 console.log(score);
             }
-            else{
-                time = time - 2;
+            else if(key != correctAnswer && time>0) {
+                time = time - 15;
             }
+            // else if(time <=0){
+            //     showScore();
+            // }
             questionNumber++;
             displayQestion(questionNumber);
         })
@@ -263,49 +281,31 @@ function correctAnswerClicked(){
     
 }
 
-function saveUserScore(){
-    var userInfo = {
-        finalScore: score,
-        initials: playerInitials.value
-    }
-    localStorage.setItem("userInfo",JSON.stringify(userInfo));
-}
-
-function getUserScores(){
-    var lastScore = JSON.parse(localStorage.getItem("userInfo"));
-
-    if(lastScore !== null){
-        playerScore.textContent = userInfor.score;
-        playerInitials.textContent = userInfo.initials;
-    }
-    else{
-        return;
-    }
-}
 
 
-//end the game and bring up 
-function endGame(){
-    var userName = document.createElement("input");
-    if(questionNumber === 9 || time === 0){
-        endScreen.appendChild(userName);
-        saveUserScore();
-        getUserScores();
+function displayHighScores(){
+    var highscores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
+    
+    for(var i=0; i<highscores.length; i++){
+        var nameList = document.createElement("li");
+        var scoreList = document.createElement("li");
+        
+        nameList.textContent = highscores[i].playerName;
+        scoreList.textContent = highscores[i].playerScore;
     }
 }
 
 
 function onstartButton() {
     startButton.addEventListener("click",function(){
+        introScreen.classList.add('hidden');
+        gameScreen.classList.remove('hidden');
         displayQestion(questionNumber);
         correctAnswerClicked();
         setTimer();
-        startButton.setAttribute("style","font-size:20px");
-
     });
   }
+  onstartButton();
 
-onstartButton();
-endGame();
-
+//endGame();
 

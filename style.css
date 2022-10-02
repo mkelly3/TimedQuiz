@@ -1,34 +1,46 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: lavenderblush;
     box-sizing: border-box;
 }
 
-.nav{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+body {
+    background-color: deepskyblue;
+    width: 100vw;
+    height: 100vh;
+}
+   
+header {
+    display: relative;
+    padding: 20px;
+    background-color: navy;  
+    border-style:double;  
+}
+header p{
+    text-align: right;
+    color: white;
+    margin-right: 30px;
 }
 .container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 75%;
+    margin-top: 2%;
+    margin-left: 25%;
+    width: 800px;
+    max-width: 80%;
+    background-color: white;
     border-radius: 5px;
-    padding: 30px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+    
+}
+.buttons button{
+    display: grid;
+    gap:30px;
 }
 
-.question{
-    font-size: 200%;
-    font-weight: bold;
-}
-.answer {
-    margin: 15px;
-    font-size: 125%;
-    border: 1px solid lavenderblush;
-    border-radius: 5px;
-    padding: 5px;
-}
 
+.hidden{
+    display: none;
+}
 
