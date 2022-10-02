@@ -8,7 +8,7 @@ var answerChoice3 = document.querySelector("#three");
 var answerChoice4 = document.querySelector("#four");
 
 //variables for the time and players overall score 
-var time = 10;
+var time = 60;
 var score = 0;
 
 //list of questions
@@ -19,7 +19,7 @@ var questionChoices = [
         choice2: "<a/>",
         choice3: "<img/>",
         choice4: "<br/>",
-        correct: "one"
+        correct: "three"
     },
     {
         question: "What is my name",
@@ -93,95 +93,93 @@ var questionChoices = [
         choice3: "winter",
         choice4: "summer",
         correct: "three"
-    }
-    //,
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
-    // {
-    //     question: "What HTML element is used to insert a picture",
-    //     choice1: "<picture/>",
-    //     choice2: "<a/>",
-    //     choice3: "<img/>",
-    //     choice4: "<br/>",
-    //     correct: "one"
-    // },
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
+    {
+        question: "What HTML element is used to insert a picture",
+        choice1: "<picture/>",
+        choice2: "<a/>",
+        choice3: "<img/>",
+        choice4: "<br/>",
+        correct: "one"
+    },
 ]
 
 //empty array to hold random questions
 var randomQuestions = []
-console.log(randomQuestions);
-
 var questionNumber = 0; 
+
 
 
 function setTimer() {
@@ -189,23 +187,12 @@ function setTimer() {
       time--;
       timeEl.textContent = "Time: " + time;
   
-      if(time === 0) {
+      if(time === 0 || questionNumber === 9) {
         clearInterval(timerInterval);
       }
 
     }, 1000);
   }
-
-
-  function onstartButton() {
-    startButton.addEventListener("click",function(){
-        setTimer();
-        startButton.setAttribute("style","font-size:20px");
-
-    });
-  }
-
-  onstartButton();
 
   //function to choose 10 random questions for the quiz
   function chooseRandomQuestion(){
@@ -222,67 +209,73 @@ function setTimer() {
         }
     }
   }
-
   //display the next question and answer choices
   var currentQ;
 
   function displayQestion(number){
     chooseRandomQuestion();
-    currentQ = randomQuestions[number]
-    console.log(questionNumber)
-    questionTitle.textContent = currentQ.question;
-    answerChoice1.textContent = currentQ.choice1;
-    answerChoice2.textContent = currentQ.choice2;
-    answerChoice3.textContent = currentQ.choice3;
-    answerChoice4.textContent = currentQ.choice4;
+    currentQ = randomQuestions[number];
 
+    if(number < randomQuestions.length) {
+        questionTitle.textContent = currentQ.question;
+        answerChoice1.textContent = currentQ.choice1;
+        answerChoice2.textContent = currentQ.choice2;
+        answerChoice3.textContent = currentQ.choice3;
+        answerChoice4.textContent = currentQ.choice4;  
+    }
+    else{
+        questionTitle.textContent = "";
+        answerChoice1.textContent = "";
+        answerChoice2.textContent = "";
+        answerChoice3.textContent = "";
+        answerChoice4.textContent = "";
+    }
+    
   }
 
   //function to check if the correct answer is chosen
   
-  displayQestion(questionNumber);
-  function checkAnswer() {
-    var correctAnswer = currentQ.correct;
-
-    
-    answerChoice1.addEventListener("click",function(event){
-        key = event.target.id;
-        if(key = correctAnswer){
-            questionNumber++
-            score++
-            console.log(score)
-        }
-        displayQestion(questionNumber);
-    })
-    answerChoice2.addEventListener("click",function(event){
-        key = event.target.id;
-        if(key = correctAnswer){
-            questionNumber++
-            score++
-            console.log(score)
-        }
-        displayQestion(questionNumber);
-    })
-    answerChoice3.addEventListener("click",function(event){
-        key = event.target.id;
-        if(key = correctAnswer){
-            questionNumber++
-            score++
-            console.log(score);
-        }
-        displayQestion(questionNumber);
-    })
-    answerChoice4.addEventListener("click",function(event){
-        key = event.target.id;
-        if(key = correctAnswer){
-            questionNumber++
-            score++
-            console.log(score);
-        }
-        displayQestion(questionNumber);
-    })
-
-
-  }
   
-  checkAnswer();
+
+function correctAnswerClicked(){
+    var correctAnswer = currentQ.correct;
+    
+   
+    for(var i=0; i<answerChoices.length; i++){
+        answerChoices[i].addEventListener("click",function(event) {
+            key = event.target.id;
+            console.log(key);
+            if(key === correctAnswer){
+                score = score + 1;
+                console.log(score);
+            }
+            // else{
+            //     time = time - 2;
+            // }
+            questionNumber++;
+            displayQestion(questionNumber);
+        })
+    }
+    
+}
+//end the game and bring up 
+function endGame(){
+    if(questionNumber === 9 || time === 0){
+        userScore();
+    }
+}
+
+
+function onstartButton() {
+    startButton.addEventListener("click",function(){
+        displayQestion(questionNumber);
+    correctAnswerClicked();
+        setTimer();
+        startButton.setAttribute("style","font-size:20px");
+
+    });
+  }
+
+onstartButton();
+
+
