@@ -160,7 +160,7 @@ function setTimer() {
       time--;
       timeEl.textContent = "Time: " + time;
   
-      if(time === 0 || questionNumber === randomQuestions.length) {
+      if(time === 0) {
         clearInterval(timerInterval);
         gameScreen.classList.add('hidden');
         endScreen.classList.remove('hidden');
@@ -181,7 +181,7 @@ function setTimer() {
 
         //randomly selecting questions from the object variable Question Choisce
         var random = questionChoices[Math.floor(Math.random() *questionChoices.length)]
-
+        console.log('random',randomQuestions)
         //if the question has not already been randomly selected it will be pushed to the array
         if(!randomQuestions.includes(random)){
             randomQuestions.push(random);
@@ -191,9 +191,25 @@ function setTimer() {
   }
   //display the next question and answer choices
   var currentQ;
+  
+//end the game and bring up 
+function endGame(){
+    var userName = document.createElement("input");
+    if(questionNumber === 9 || time === 0){
+        userScore();
+        endScreen.appendChild(userName);
+        saveUserScore();
+        getUserScores();
+        introScreen.classList.add('hidden');
+        gameScreen.classList.add('hidden');
+        endScreen.classList.remove('hidden'); 
+    }
+}
+
 
   function displayQestion(number){
-    chooseRandomQuestion();
+    console.log('question number', number)
+    
     currentQ = randomQuestions[number];
 
     if(number < randomQuestions.length) {
@@ -204,9 +220,13 @@ function setTimer() {
         answerChoice4.textContent = currentQ.choice4;  
     }
     else{
-        endScreen.classList.remove('Hidden');
+        endScreen.classList.remove('hidden');
+        gameScreen.classList.add('hidden');
         playerScore.textContent = score;
+        timeEl.textContent = '';
+        stopTimer();
     }
+   
     
   }
   function stopTimer(){
@@ -219,30 +239,51 @@ function setTimer() {
   
 
 function correctAnswerClicked(){
-    //var correctAnswer = currentQ.correct;
-    for(var i =0; i< answerChoices.length;i++) {
+    correctAnswer = currentQ.correct;
+    console.log(correctAnswer)
+    for(var i=0; i<answerChoices.length; i++){
         answerChoices[i].addEventListener("click",function(event) {
             key = event.target.id;
-            console.log(key);
-            if(key == randomQuestions.correct){
-                score = score + 1;
-                console.log(score);
-                questionNumber++;
-                displayQestion(questionNumber);
-            }
-            else if(key != randomQuestions.correct) {
-                time = time - 15;
-                if(time == 0){
-                    stopTimer();
-                }
-                questionNumber++;
-                displayQestion(questionNumber);
-            }
             
-            })
+            if(key == correctAnswer){
+                console.log(key);
+                ++score; 
+                console.log(score);
+            }
+            else {
+                time = time - 15;
+                if(time == 0 || questionNumber === 10){
+                    stopTimer();
+                    endGame();
+                    endScreen.classList.remove('hidden')
+                }
+            }
+            questionNumber++;
+            displayQestion(questionNumber);
+            
+        })
     }
 }
-correctAnswerClicked();
+function saveUserScore(){
+    var userInfo = {
+        finalScore: score,
+        initials: playerInitials.value
+    }
+    localStorage.setItem("userInfo",JSON.stringify(userInfo));
+}
+
+function getUserScores(){
+    var lastScore = JSON.parse(localStorage.getItem("userInfo"));
+
+    if(lastScore !== null){
+        playerScore.textContent = userInfor.score;
+        playerInitials.textContent = userInfo.initials;
+    }
+    else{
+        return;
+    }
+}
+
 
 
 function clickViewHighScores(){
@@ -262,6 +303,13 @@ clickViewHighScores();
 
 
 function onSaveScores(){
+     
+    console.log(document.getElementById('initials').value);
+   
+    // var playerData = {
+    //     playerScore: score,
+    //     name: playerName
+    // };
     submitScoresButton.addEventListener("click", function(){
         lastScoresScreen.classList.remove('hidden');
         introScreen.classList.add('hidden');
@@ -269,9 +317,10 @@ function onSaveScores(){
         endScreen.classList.add('hidden'); 
 
     });
+    //localStorage.setItem("player", JSON.stringify(playerData));
 
 }
-onSaveScores();
+
 
 function displayLastScore(){
 
@@ -281,12 +330,14 @@ function onstartButton() {
     startButton.addEventListener("click",function(){
         introScreen.classList.add('hidden');
         gameScreen.classList.remove('hidden');
+        chooseRandomQuestion();
         displayQestion(questionNumber);
+        correctAnswerClicked();
         setTimer();
     });
   }
   onstartButton();
-
+  onSaveScores();
 
 
 
