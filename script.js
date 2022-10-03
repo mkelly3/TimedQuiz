@@ -211,16 +211,21 @@ function setTimer() {
 
 function correctAnswerClicked(){
     var correctAnswer = currentQ.correct;
-    console.log(correctAnswer);
     for(var i =0; i< answerChoices.length;i++) {
         answerChoices[i].addEventListener("click",function(event) {
-            key = event.target.id;
+            key = event.target.value;
             console.log(key);
-            if(key === correctAnswer){
+            if(key == correctAnswer){
                 score = score + 1;
+                console.log(score);
             }
-            else if(key != correctAnswer && time>0) {
+            else if(key != correctAnswer && time > 0) {
                 time = time - 15;
+            }
+            else{
+                gameScreen.classList.add('hidden');
+                endScreen.classList.remove('hidden');
+                
             }
             questionNumber++;
             displayQestion(questionNumber);
@@ -230,35 +235,19 @@ function correctAnswerClicked(){
     }
 
 
-function saveHighScores(){
-    var playerData = {
-        playerScore: score,
-        playerName: playerInitials
-    };
-    localStorage.setItem("playerData", JSON.stringify(playerData));
-    console.log(playerData);
-}
+function clickViewHighScores(){
+    var highScoresButton = document.getElementById('highScores');
+    var lastScoresScreen = document.getElementById('lastScores');
 
-function displayHighScores(){
-    var lastScore = JSON.parse(localStorage.getItem("playerData"));
-    
-    if(lastScore !==null){
-        document.getElementById("previousScores").innerHTML = lastScore;
-    }
-    else{
-        return;
-    }
-}
-
-function clickSubmitScoresButton(){
-    submitScoresButton.addEventListener("click",function(e){
-        e.preventDefault();
-        saveHighScores();
-        displayHighScores();
+    highScoresButton.addEventListener("click", function(){
+        lastScoresScreen.classList.remove('hidden');
+        introScreen.classList.add('hidden');
+        gameScreen.classList.add('hidden');
+        endScreen.classList.add('hidden'); 
 
     })
 }
-clickSubmitScoresButton();
+clickViewHighScores();
 
 
 function onstartButton() {
