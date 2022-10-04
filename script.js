@@ -14,6 +14,7 @@ var endScreen = document.querySelector("#end");
 var introScreen = document.querySelector("#intro");
 var submitScoresButton = document.querySelector("#submitScores");
 var lastScoresScreen = document.querySelector("#lastScores");
+var previous = document.querySelector("#previousScores");
 
 
 
@@ -208,8 +209,7 @@ function endGame(){
 
 
   function displayQestion(number){
-    console.log('question number', number)
-    
+
     currentQ = randomQuestions[number];
 
     if(number < randomQuestions.length) {
@@ -295,6 +295,8 @@ function clickViewHighScores(){
         introScreen.classList.add('hidden');
         gameScreen.classList.add('hidden');
         endScreen.classList.add('hidden'); 
+        previous.textContent = JSON.parse(localStorage.getItem("score"));
+        
 
     })
 }
@@ -303,21 +305,17 @@ clickViewHighScores();
 
 
 function onSaveScores(){
-     
-    console.log(document.getElementById('initials').value);
-   
-    // var playerData = {
-    //     playerScore: score,
-    //     name: playerName
-    // };
+    
     submitScoresButton.addEventListener("click", function(){
+        previous.textContent = score + playerInitials;
         lastScoresScreen.classList.remove('hidden');
         introScreen.classList.add('hidden');
         gameScreen.classList.add('hidden');
         endScreen.classList.add('hidden'); 
-
+        localStorage.setItem("player", JSON.stringify(score));
+        
     });
-    //localStorage.setItem("player", JSON.stringify(playerData));
+    
 
 }
 
